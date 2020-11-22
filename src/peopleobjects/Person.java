@@ -16,4 +16,19 @@ public class Person {
   public Stats getCurrentStats() {
     return null;
   }
+
+  private int evaluateCurrentHealth() throws Exception {
+    return evaluateHealth(baseStats.getHealth(), age);
+  }
+
+  private static int evaluateHealth(final int baseHealth, final int currentAge) throws Exception {
+    validateAge(currentAge);
+    return 0;
+  }
+
+  private static void validateAge(final int age) throws Exception {
+    if (age < 0 || age > 100) {
+      throw new Exception("Invalid age '" + age + "'. Age must be between 0 and 100.");
+    }
+  }
 }
