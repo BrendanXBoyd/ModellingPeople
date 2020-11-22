@@ -9,7 +9,7 @@ import exceptionbase.ModellingPeopleException;
 
 public class StatsException extends ModellingPeopleException {
 
-  enum errorCode {
+  enum ErrorCode {
     STATS_EX_HealthBelowMin,
     STATS_EX_LibidoBelowMin,
     STATS_EX_MettleBelowMin,
@@ -17,7 +17,7 @@ public class StatsException extends ModellingPeopleException {
     ;
 
     private final ErrorCodeBase errorCodeBase;
-    errorCode() {
+    ErrorCode() {
       errorCodeBase = new ErrorCodeBase(this.name());
     }
 
