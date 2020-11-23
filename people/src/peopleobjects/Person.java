@@ -38,6 +38,16 @@ public class Person {
     currentStats = CurrentStatsLogic.calculateNewStats(age, statAffinities, currentStats);
   }
 
+  public int getAge() {
+    return age;
+  }
+
+  private static void validateAge(final int age) throws PersonException {
+    if (age < 0 || age > 100) {
+      throw new PersonException(PersonException.ErrorCode.PERSON_AgeInvalid.getErrorCode(), String.valueOf(age));
+    }
+  }
+
   public Stats getCurrentStats() {
     return currentStats;
   }
@@ -48,11 +58,5 @@ public class Person {
 
   public boolean isAlive() {
     return alive;
-  }
-
-  private static void validateAge(final int age) throws PersonException {
-    if (age < 0 || age > 100) {
-      throw new PersonException(PersonException.ErrorCode.PERSON_AgeInvalid.getErrorCode(), String.valueOf(age));
-    }
   }
 }
