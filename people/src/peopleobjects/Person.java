@@ -28,7 +28,7 @@ public class Person {
 
   private static void validateAge(final int age) throws Exception {
     if (age < 0 || age > 100) {
-      throw new Exception("Invalid age '" + age + "'. Age must be between 0 and 100.");
+      throw new PersonException(PersonException.ErrorCode.PERSON_AgeInvalid.getErrorCode(), String.valueOf(age));
     }
   }
 }

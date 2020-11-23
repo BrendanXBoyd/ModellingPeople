@@ -7,13 +7,10 @@ package peopleobjects;
 import exceptionbase.ErrorCodeBase;
 import exceptionbase.ModellingPeopleException;
 
-public class StatsException extends ModellingPeopleException {
+public class PersonException extends ModellingPeopleException {
 
   enum ErrorCode {
-    STATS_EX_HealthBelowMin,
-    STATS_EX_LibidoBelowMin,
-    STATS_EX_MettleBelowMin,
-    STATS_EX_WisdomBelowMin,
+    PERSON_AgeInvalid,
     ;
 
     private final ErrorCodeBase errorCodeBase;
@@ -26,11 +23,11 @@ public class StatsException extends ModellingPeopleException {
     }
   }
 
-  public StatsException(ErrorCodeBase errorCode, String... args) {
+  public PersonException(ErrorCodeBase errorCode, String... args) {
     super(errorCode, args);
   }
 
-  public StatsException(Throwable cause, ErrorCodeBase errorCode, String... args) {
+  public PersonException(Throwable cause, ErrorCodeBase errorCode, String... args) {
     super(cause, errorCode, args);
   }
 }
