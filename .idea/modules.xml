@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ModellingPeople.iml" filepath="$PROJECT_DIR$/ModellingPeople.iml" />
       <module fileurl="file://$PROJECT_DIR$/exceptions/exceptions.iml" filepath="$PROJECT_DIR$/exceptions/exceptions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/people/people.iml" filepath="$PROJECT_DIR$/people/people.iml" />
     </modules>
   </component>
 </project>
