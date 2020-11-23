@@ -52,5 +52,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="org.apache.commons:commons-lang3:3.3" level="project" />
+    <orderEntry type="library" name="org.jmockit:jmockit:1.49" level="project" />
+    <orderEntry type="library" name="junit:junit:4.12" level="project" />
   </component>
 </module>
