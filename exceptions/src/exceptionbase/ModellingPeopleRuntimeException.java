@@ -4,9 +4,10 @@
 
 package exceptionbase;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Properties;
 
 public class ModellingPeopleRuntimeException extends RuntimeException {
@@ -30,7 +31,8 @@ public class ModellingPeopleRuntimeException extends RuntimeException {
   }
 
   enum ErrorCode {
-    MP_RUNTIME_FailedToLoadExceptionResource,
+    MP_RUNTIME_PropertiesNotFound,
+    MP_RUNTIME_ResourceNotFound,
     ;
 
     private final ErrorCodeBase errorCodeBase;
@@ -41,6 +43,10 @@ public class ModellingPeopleRuntimeException extends RuntimeException {
     public ErrorCodeBase getErrorCode() {
       return errorCodeBase;
     }
+  }
+
+  public ErrorCodeBase getErrorCode() {
+    return errorCode;
   }
 
   @Override
@@ -78,11 +84,17 @@ public class ModellingPeopleRuntimeException extends RuntimeException {
     Properties prop = new Properties();
     try {
       prop.load(is);
-    } catch (IOException e) {
-      throw new ModellingPeopleRuntimeException(e, ErrorCode.MP_RUNTIME_FailedToLoadExceptionResource.getErrorCode(),
+    } catch (IOException | NullPointerException e) {
+      throw new ModellingPeopleRuntimeException(e, ErrorCode.MP_RUNTIME_PropertiesNotFound.getErrorCode(),
+          errorClass.getSimpleName());
+    }
+
+    final String unformattedErrorMessage = (String) prop.get(errorCode.getErrorKeyInPropertiesFile());
+    if (StringUtils.isEmpty(unformattedErrorMessage)) {
+      throw new ModellingPeopleRuntimeException(ErrorCode.MP_RUNTIME_ResourceNotFound.getErrorCode(),
           errorCode.getErrorKeyInPropertiesFile(), errorClass.getSimpleName());
     }
 
-    return String.format((String) prop.get(errorCode.getErrorKeyInPropertiesFile()), Arrays.stream(args));
+    return String.format(unformattedErrorMessage, (Object[]) args);
   }
 }

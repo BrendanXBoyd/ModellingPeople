@@ -21,6 +21,10 @@ public class ModellingPeopleException extends Exception {
     this.args = args;
   }
 
+  public ErrorCodeBase getErrorCode() {
+    return errorCode;
+  }
+
   @Override
   public String getLocalizedMessage() {
     return getErrorMessage();
